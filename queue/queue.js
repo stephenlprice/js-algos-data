@@ -2,8 +2,6 @@
 Queue: First In First Out 
 
 Functions: push, shift, print, size, front, isEmpty
-
-Exercise: find palindromes
 */
 
 function Queue() {

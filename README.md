@@ -8,7 +8,7 @@ Implementing the techniques show on the [freecodecamp.org](https://www.freecodec
 
 - [x] Stacks
 - [x] Sets
-- [ ] Queues & Priority Queues
+- [x] Queues & Priority Queues
 - [ ] Binary Search Tree
 - [ ] Binary Search Tree: Traversal & Height
 - [ ] Hash Tables
