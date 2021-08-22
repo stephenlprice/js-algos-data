@@ -246,14 +246,20 @@ class BST {
     };
   }
 
+  // returns an array starting with leftmost leafs on the left subtree,
+  // then backs up, skips root and returns leftmost leaves on right subtree
   postOrder() {
     if (this.root === null) {
       return null;
     } else {
       const result = new Array();
       const traversePostOrder = (node) => {
+        // goes to leftmost leaf on leftsubtree of any node
         node.left && traversePostOrder(node.left);
+        // once leftmost leaf is found it starts traversing right
         node.right && traversePostOrder(node.right);
+        // pushed leftmost leaves first, then all leaves from left to right
+        // left subtree first, then right subtree
         result.push(node.data);
       }
       traversePostOrder(this.root);
@@ -261,6 +267,7 @@ class BST {
     };
   }
 
+  // returns an array starting with root then all following nodes from left to right
   levelOrder() {
     const result = new Array();
     const Q = new Array();
@@ -268,9 +275,12 @@ class BST {
     if (this.root !== null) {
       Q.push(this.root);
 
+      // adds nodes into queue until all nodes are exhausted
       while (Q.length > 0) {
+        // assigns node to the first element in queue
         let node = Q.shift();
         result.push(node.data);
+        // then push left and right nodes into the queue
         if (node.left !== null) {
           Q.push(node.left);
         };
@@ -289,30 +299,30 @@ class BST {
 
 }
 
-// // instantiate a new binary search tree
-// const bst = new BST();
+// instantiate a new binary search tree
+const bst = new BST();
 
-// // test operations
-// bst.add(4);
-// bst.add(4); // wont accept duplicates
-// bst.add(2);
-// bst.add(6);
-// bst.add(1);
-// bst.add(3);
-// bst.add(5);
-// bst.add(7);
-// bst.remove(4);
+// test operations
+bst.add(4);
+bst.add(4); // wont accept duplicates
+bst.add(2);
+bst.add(6);
+bst.add(1);
+bst.add(3);
+bst.add(5);
+bst.add(7);
+bst.remove(4);
 
-// console.log('bst.findMin(): ', bst.findMin()); // 1
-// console.log('bst.findMax(): ', bst.findMax()); // 7
+console.log('bst.findMin(): ', bst.findMin()); // 1
+console.log('bst.findMax(): ', bst.findMax()); // 7
 
-// bst.remove(7);
-// console.log('bst.findMax(): ', bst.findMax()); // 6
+bst.remove(7);
+console.log('bst.findMax(): ', bst.findMax()); // 6
 
-// console.log('bst.isPresent(4): ', bst.isPresent(4)); // false
-// console.log('bst.isPresent(3): ', bst.isPresent(3)); // true
+console.log('bst.isPresent(4): ', bst.isPresent(4)); // false
+console.log('bst.isPresent(3): ', bst.isPresent(3)); // true
 
-// console.log('bst.find(5): ', bst.find(5)); // logs the node
+console.log('bst.find(5): ', bst.find(5)); // logs the node
 
 console.log('//////////////// Tree Traversal //////////////////');
 
@@ -328,25 +338,22 @@ bst2.add(5);
 bst2.add(7);
 bst2.add(20);
 
-// console.log(bst2);
+console.log('bst2.findMin(): ', bst2.findMin()); // 2
+console.log('bst2.findMax(): ', bst2.findMax()); // 22
 
-// console.log('bst2.findMin(): ', bst2.findMin()); // 2
-// console.log('bst2.findMax(): ', bst2.findMax()); // 22
+console.log('bst2.minHeight(): ', bst2.minHeight()); // 1
+console.log('bst2.maxHeight(): ', bst2.maxHeight()); // 3
+console.log('bst2.isBalanced(): ', bst2.isBalanced()); // false
 
-// console.log('bst2.minHeight(): ', bst2.minHeight()); // 1
-// console.log('bst2.maxHeight(): ', bst2.maxHeight()); // 3
-// console.log('bst2.isBalanced(): ', bst2.isBalanced()); // false
+bst2.add(10);
+console.log('bst2.minHeight(): ', bst2.minHeight()); // 2
+console.log('bst2.maxHeight(): ', bst2.maxHeight()); // 3
+console.log('bst2.isBalanced(): ', bst2.isBalanced()); // true
 
-// bst2.add(10);
-// console.log('bst2.minHeight(): ', bst2.minHeight()); // 2
-// console.log('bst2.maxHeight(): ', bst2.maxHeight()); // 3
-// console.log('bst2.isBalanced(): ', bst2.isBalanced()); // true
+console.log('bst2.InOrder(): ', bst2.inOrder());
 
-// console.log('bst2.InOrder(): ', bst2.inOrder());
-
-// console.log('bst2.preOrder(): ', bst2.preOrder());
+console.log('bst2.preOrder(): ', bst2.preOrder());
 
 console.log('bst2.postOrder(): ', bst2.postOrder());
 
 console.log('bst2.levelOrder(): ', bst2.levelOrder());
-
