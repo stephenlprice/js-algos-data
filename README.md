@@ -10,7 +10,7 @@ Implementing the techniques show on the [freecodecamp.org](https://www.freecodec
 - [x] Sets
 - [x] Queues & Priority Queues
 - [x] Binary Search Tree
-- [ ] Binary Search Tree: Traversal & Height
+- [x] Binary Search Tree: Traversal & Height
 - [ ] Hash Tables
 - [ ] Linked List
 - [ ] Trie
