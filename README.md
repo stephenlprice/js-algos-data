@@ -11,7 +11,7 @@ Implementing the techniques show on the [freecodecamp.org](https://www.freecodec
 - [x] Queues & Priority Queues
 - [x] Binary Search Tree
 - [x] Binary Search Tree: Traversal & Height
-- [ ] Hash Tables
+- [x] Hash Tables
 - [ ] Linked List
 - [ ] Trie
 - [ ] Heap (max and min)
