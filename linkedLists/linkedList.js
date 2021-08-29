@@ -16,11 +16,11 @@ _______________________________________________________________________________
 */
 
 function LinkedList() {
-  const length = 0;
+  let length = 0;
   // only entry point into data is via head, you must then traverse the linked list
   let head = null;
 
-  const Node = (element) => {
+  const Node = function(element) {
     this.element = element;
     this.next = null;
   };
@@ -42,7 +42,7 @@ function LinkedList() {
       head = node;
     } else {
       // if the list has nodes, traverse them until the last node is found
-      const currentNode = head;
+      let currentNode = head;
       while (currentNode.next) {
         currentNode = currentNode.next;
       };
@@ -58,7 +58,7 @@ function LinkedList() {
     let previousNode;
     // handles exception on empty linked lists
     if (head === null) {
-      throw new Error('linked list is empty, cannot remove a node');
+      return console.error('linked list is empty, cannot remove a node');
     }
     // if the first node in list matches the element, remove it
     if (currentNode.element === element) {
@@ -66,9 +66,9 @@ function LinkedList() {
     } else {
       // traverse the linked list until a match is found
       while (currentNode.element !== element) {
-        // if the last node does not match, then throw
+        // if the last node does not match, then log an error
         if (currentNode.next === null) {
-          throw new Error('node not found, cannot remove node');
+          return console.error('node not found, cannot remove node');
         };
         previousNode = currentNode;
         currentNode = currentNode.next;
@@ -88,7 +88,7 @@ function LinkedList() {
   // returns a number indicating index in linked list
   this.indexOf  = (element) => {
     let currentNode = head;
-    const index = -1;
+    let index = 0;
 
     while(currentNode) {
       index++;
@@ -104,14 +104,14 @@ function LinkedList() {
   // returns the element at 
   this.elementAt = (index) => {
     let currentNode = head;
-    const count = 0;
+    let count = 0;
     // handle negative index
     if (index < 0) {
-      throw new Error(`invalid index ${index}`);
+      return console.error(`invalid index ${index}`);
     };
-    // if the index is greater than the length of the linked list, return
+    // if the index is greater than the length of the linked list, return an error
     if (index > length - 1) {
-      throw new Error(`element not found, index ${index} is greater than length ${length}`);
+      return console.error(`element not found, index ${index} is greater than length ${length}`);
     };
     // traverse the linked list until count equals index
     while (count < index) {
@@ -126,14 +126,14 @@ function LinkedList() {
     const node = new Node(element);
     let currentNode = head;
     let previousNode;
-    const currentIndex = 0;
+    let currentIndex = 0;
     // handle negative index
     if (index < 0) {
-      throw new Error(`invalid index ${index}`);
+      return console.error(`invalid index ${index}`);
     };
-    // if the index is greater than the length of the linked list, return
+    // if the index is greater than the length of the linked list, return an error
     if (index > length - 1) {
-      throw new Error(`element not found, index ${index} is greater than length ${length}`);
+      return console.error(`element not found, index ${index} is greater than length ${length}`);
     };
     // handle placing a new node at head
     if (index === 0) {
@@ -157,18 +157,18 @@ function LinkedList() {
   this.removeAt = (index) => {
     let currentNode = head;
     let previousNode;
-    const currentIndex = 0;
+    let currentIndex = 0;
     // handles exception on empty linked lists
     if (head === null) {
-      throw new Error('linked list is empty, cannot remove a node');
+      return console.error('linked list is empty, cannot remove a node');
     }
     // handle negative index
     if (index < 0) {
-      throw new Error(`invalid index ${index}`);
+      return console.error(`invalid index ${index}`);
     };
-    // if the index is greater than the length of the linked list, return
+    // if the index is greater than the length of the linked list, return an error
     if (index > length - 1) {
-      throw new Error(`element not found, index ${index} is greater than length ${length}`);
+      return console.error(`element not found, index ${index} is greater than length ${length}`);
     };
     // removes head node and replaces it with its .next reference
     if (index === 0) {
@@ -187,3 +187,23 @@ function LinkedList() {
   }
 };
 
+// testing the new LinkedList class
+const conga = new LinkedList();
+console.log('conga.isEmpty(): ', conga.isEmpty()); // true
+conga.remove('Snake'); // linked list is empty, cannot remove a node
+conga.add('Kitten');
+conga.add('Puppy');
+conga.add('Dog');
+conga.add('Cat');
+conga.add('Fish');
+
+console.log('conga.isEmpty(): ', conga.isEmpty()); // false
+console.log('conga.head(): ', conga.head()); // Kitten
+console.log('conga.size(): ', conga.size()); // 5
+console.log('conga.removeAt(3): ', conga.removeAt(3)); // Cat
+console.log('conga.size(): ', conga.size()); // 4
+console.log('conga.elementAt(3): ', conga.elementAt(3)); // Fish
+console.log("conga.indexOf('Puppy'): ", conga.indexOf('Puppy')); // 1
+conga.addAt(3, 'Snake'); // Snake added at index 3
+console.log('conga.elementAt(3): ', conga.elementAt(3)); // Snake
+console.log('conga.size(): ', conga.size()); // 5
