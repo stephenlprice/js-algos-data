@@ -56,12 +56,20 @@ function LinkedList() {
   this.remove = (element) => {
     let currentNode = head;
     let previousNode;
+    // handles exception on empty linked lists
+    if (head === null) {
+      throw new Error('linked list is empty, cannot remove a node');
+    }
     // if the first node in list matches the element, remove it
     if (currentNode.element === element) {
       head = currentNode.next;
     } else {
       // traverse the linked list until a match is found
-      while (currentNode.element !== element && currentNode.next) {
+      while (currentNode.element !== element) {
+        // if the last node does not match, then throw
+        if (currentNode.next === null) {
+          throw new Error('node not found, cannot remove node');
+        };
         previousNode = currentNode;
         currentNode = currentNode.next;
       };
@@ -72,10 +80,12 @@ function LinkedList() {
     length--;
   };
 
+  // returns false if any node has been registered to length
   this.isEmpty = () => {
     return length === 0;
   };
 
+  // returns a number indicating index in linked list
   this.indexOf  = (element) => {
     let currentNode = head;
     const index = -1;
@@ -84,11 +94,96 @@ function LinkedList() {
       index++;
       if (currentNode.element = element) {
         return index;
-      }
+      };
       currentNode = currentNode.next;
     };
-    
+    // returning -1 means that no match was found
     return -1;
   };
 
-}
+  // returns the element at 
+  this.elementAt = (index) => {
+    let currentNode = head;
+    const count = 0;
+    // handle negative index
+    if (index < 0) {
+      throw new Error(`invalid index ${index}`);
+    };
+    // if the index is greater than the length of the linked list, return
+    if (index > length - 1) {
+      throw new Error(`element not found, index ${index} is greater than length ${length}`);
+    };
+    // traverse the linked list until count equals index
+    while (count < index) {
+      count++;
+      currentNode = currentNode.next;
+    };
+    return currentNode.element;
+  };
+
+  // add a new node at the specified index, replacing existing node references
+  this.addAt = (index, element) => {
+    const node = new Node(element);
+    let currentNode = head;
+    let previousNode;
+    const currentIndex = 0;
+    // handle negative index
+    if (index < 0) {
+      throw new Error(`invalid index ${index}`);
+    };
+    // if the index is greater than the length of the linked list, return
+    if (index > length - 1) {
+      throw new Error(`element not found, index ${index} is greater than length ${length}`);
+    };
+    // handle placing a new node at head
+    if (index === 0) {
+      node.next = currentNode;
+      head = node;
+    } else {
+      // traverse the linked list until currentIndex equals index
+      while (currentIndex < index) {
+        currentIndex++;
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      };
+      // when currentIndex equals index, replace node links
+      node.next = currentNode;
+      previousNode.next = node;
+    };
+    length++;
+    console.log(`${element} added at index ${currentIndex}`);
+  };
+
+  this.removeAt = (index) => {
+    let currentNode = head;
+    let previousNode;
+    const currentIndex = 0;
+    // handles exception on empty linked lists
+    if (head === null) {
+      throw new Error('linked list is empty, cannot remove a node');
+    }
+    // handle negative index
+    if (index < 0) {
+      throw new Error(`invalid index ${index}`);
+    };
+    // if the index is greater than the length of the linked list, return
+    if (index > length - 1) {
+      throw new Error(`element not found, index ${index} is greater than length ${length}`);
+    };
+    // removes head node and replaces it with its .next reference
+    if (index === 0) {
+      head = currentNode.next;
+    } else {
+      // traverse the linked list until currentIndex equals index
+      while (currentIndex < index) {
+        currentIndex++;
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      };
+      previousNode.next = currentNode.next;
+    };
+    length--;
+    return currentNode.element;
+  }
+};
+
