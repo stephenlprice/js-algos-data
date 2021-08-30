@@ -1,8 +1,10 @@
 /*
 Linked Lists
+original implementation at: https://codepen.io/beaucarnes/pen/ybOvBq?editors=0011
 
 - elements stored in nodes
 - node stores to pieces of information: element itself and reference (link) to the next node
+- data is accessed via head or the first node in the linked list
 - like arrays, linked lists can be use to implement different data structures:
 _______________________________________________________________________________
 |                Arrays                  |            Linked Lists            |
