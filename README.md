@@ -13,7 +13,7 @@ Implementing the techniques show on the [freecodecamp.org](https://www.freecodec
 - [x] Binary Search Tree: Traversal & Height
 - [x] Hash Tables
 - [x] Linked List
-- [ ] Trie
+- [x] Trie
 - [ ] Heap (max and min)
 - [ ] Graphs: adjacency list, adjacency matrix, incidence matrix
 - [ ] Graphs: breadth-first search
